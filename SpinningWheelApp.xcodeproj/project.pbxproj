@@ -9,21 +9,29 @@
 /* Begin PBXBuildFile section */
 		93121CD02B73C550004761BE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93121CCF2B73C550004761BE /* AppDelegate.swift */; };
 		93121CD22B73C550004761BE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93121CD12B73C550004761BE /* SceneDelegate.swift */; };
-		93121CD42B73C550004761BE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93121CD32B73C550004761BE /* ViewController.swift */; };
+		93121CD42B73C550004761BE /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93121CD32B73C550004761BE /* MainViewController.swift */; };
 		93121CD72B73C550004761BE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 93121CD52B73C550004761BE /* Main.storyboard */; };
 		93121CD92B73C559004761BE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 93121CD82B73C559004761BE /* Assets.xcassets */; };
 		93121CDC2B73C559004761BE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 93121CDA2B73C559004761BE /* LaunchScreen.storyboard */; };
+		93121CEC2B73CDD1004761BE /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93121CEB2B73CDD1004761BE /* GameViewController.swift */; };
+		93121CF02B73CE04004761BE /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93121CEF2B73CE04004761BE /* LaunchViewController.swift */; };
+		93121CF42B73D30B004761BE /* GameChoiceButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93121CF32B73D30B004761BE /* GameChoiceButton.swift */; };
+		93121CF72B73D64C004761BE /* GameChoiceButtonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93121CF62B73D64C004761BE /* GameChoiceButtonViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		93121CCC2B73C550004761BE /* SpinningWheelApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpinningWheelApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		93121CCF2B73C550004761BE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		93121CD12B73C550004761BE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		93121CD32B73C550004761BE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		93121CD32B73C550004761BE /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		93121CD62B73C550004761BE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		93121CD82B73C559004761BE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		93121CDB2B73C559004761BE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		93121CDD2B73C559004761BE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		93121CEB2B73CDD1004761BE /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
+		93121CEF2B73CE04004761BE /* LaunchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
+		93121CF32B73D30B004761BE /* GameChoiceButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameChoiceButton.swift; sourceTree = "<group>"; };
+		93121CF62B73D64C004761BE /* GameChoiceButtonViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameChoiceButtonViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,7 +88,9 @@
 		93121CE62B73C61C004761BE /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				93121CD32B73C550004761BE /* ViewController.swift */,
+				93121CEF2B73CE04004761BE /* LaunchViewController.swift */,
+				93121CD32B73C550004761BE /* MainViewController.swift */,
+				93121CEB2B73CDD1004761BE /* GameViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -88,6 +98,7 @@
 		93121CE72B73C627004761BE /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				93121CF62B73D64C004761BE /* GameChoiceButtonViewModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -95,6 +106,7 @@
 		93121CE82B73C62C004761BE /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				93121CF32B73D30B004761BE /* GameChoiceButton.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -169,8 +181,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				93121CD42B73C550004761BE /* ViewController.swift in Sources */,
+				93121CEC2B73CDD1004761BE /* GameViewController.swift in Sources */,
+				93121CF02B73CE04004761BE /* LaunchViewController.swift in Sources */,
+				93121CF42B73D30B004761BE /* GameChoiceButton.swift in Sources */,
+				93121CD42B73C550004761BE /* MainViewController.swift in Sources */,
 				93121CD02B73C550004761BE /* AppDelegate.swift in Sources */,
+				93121CF72B73D64C004761BE /* GameChoiceButtonViewModel.swift in Sources */,
 				93121CD22B73C550004761BE /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
