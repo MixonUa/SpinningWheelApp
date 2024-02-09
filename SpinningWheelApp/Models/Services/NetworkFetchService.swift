@@ -14,8 +14,8 @@ class NetworkFetchService {
         self.networkDataProvider = networkDataProvider
     }
     
-    func requestAllNews(completion: @escaping (Result<EmodjiDataModel, Error>) -> Void) {
-        let newsURL = "https://raw.githubusercontent.com/MixonUa/JSON-NewslineTestApp/main/main.json"
+    func requestAllNews(completion: @escaping (Result<[EmodjiDataModel], Error>) -> Void) {
+        let newsURL = "https://raw.githubusercontent.com/MixonUa/JSON-Emodji/main/emoji.json"
         networkDataProvider.requestData(urlString: newsURL) { (data, error) in
             if let cathedError = error {
                 if let err = cathedError as? URLError, err.code  == URLError.Code.notConnectedToInternet {
@@ -25,7 +25,7 @@ class NetworkFetchService {
                 }
             if let data = data {
                 do {
-                    let answer = try JSONDecoder().decode(EmodjiDataModel.self, from: data)
+                    let answer = try JSONDecoder().decode([EmodjiDataModel].self, from: data)
                     DispatchQueue.main.async {
                         completion(.success(answer))
                     }
