@@ -18,7 +18,7 @@ class GameChoiceButton: UIButton {
         return emodji
     }()
     
-    private let gameTitleLabel: UILabel = {
+    public let gameTitleLabel: UILabel = {
         let label = UILabel()
         label.lineBreakMode = .byWordWrapping
         label.numberOfLines = 2
@@ -66,9 +66,9 @@ class GameChoiceButton: UIButton {
         layer.borderColor = UIColor.darkGray.cgColor
     }
     
-    private func shakeButton() {
+    public func shakeButton() {
         let shake = CABasicAnimation(keyPath: "position")
-        shake.duration = 0.3
+        shake.duration = 0.1
         shake.repeatCount = 2
         shake.autoreverses = true
         

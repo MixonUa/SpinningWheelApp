@@ -8,10 +8,12 @@
 import UIKit
 
 class GameViewController: UIViewController {
+    var gameSet: String = ""
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        view.backgroundColor = UIColor.systemPink
+        print("You chosed \(gameSet)")
         // Do any additional setup after loading the view.
     }
     

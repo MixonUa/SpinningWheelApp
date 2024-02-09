@@ -24,11 +24,33 @@ class MainViewController: UIViewController {
         addButtonsConstraints()
     }
     
+    
+    @objc private func gameChoiceButtonPressed(sender: GameChoiceButton) {
+        guard let gameSet = sender.gameTitleLabel.text else { return }
+        print(gameSet)
+        sender.shakeButton()
+        presentVC(with: gameSet)
+    }
+    
+    // MARK: - Navigation
+    private func presentVC(with gameSet: String) {
+        let nextVC = GameViewController()
+        nextVC.gameSet = gameSet
+        nextVC.modalTransitionStyle = .crossDissolve
+        nextVC.modalPresentationStyle = .fullScreen
+        self.present(nextVC, animated: true, completion: nil)
+    }
+    
+    // MARK: - Game Choice Buttons configaration
     private func configureButtons(with viewModel: GameChoiceButtonViewModel) {
         firstButton.configure(with: viewModel)
+        firstButton.addTarget(self, action: #selector(gameChoiceButtonPressed), for: .touchUpInside)
         secondButton.configure(with: GameChoiceButtonViewModel(tittle: "Countriesesese wowowowowo", emodji: "🦃"))
+        secondButton.addTarget(self, action: #selector(gameChoiceButtonPressed), for: .touchUpInside)
         thirdButton.configure(with: viewModel)
+        thirdButton.addTarget(self, action: #selector(gameChoiceButtonPressed), for: .touchUpInside)
         fourthButton.configure(with: GameChoiceButtonViewModel(tittle: "Countriesesese wowowowowo", emodji: "🦃"))
+        fourthButton.addTarget(self, action: #selector(gameChoiceButtonPressed), for: .touchUpInside)
     }
 
     private func addButtonsConstraints() {
