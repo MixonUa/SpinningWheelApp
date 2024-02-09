@@ -10,25 +10,35 @@ import UIKit
 class MainViewController: UIViewController {
     
     let viewModel = GameChoiceButtonViewModel(tittle: "Countriesesese", emodji: "😀")
-    var buttonsArray:[GameChoiceButton] = []
+
+    let firstButton = GameChoiceButton()
+    let secondButton = GameChoiceButton()
+    let thirdButton = GameChoiceButton()
+    let fourthButton = GameChoiceButton()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .blue
         
-        let firstButton = GameChoiceButton(with: viewModel)
-        buttonsArray.append(firstButton)
-        let secondButton = GameChoiceButton(with: GameChoiceButtonViewModel(tittle: "Countriesesese wowowowowo", emodji: "🦃"))
-        buttonsArray.append(secondButton)
-        configureButtons(with: buttonsArray)
-    }
-
-    private func configureButtons(with buttons: [GameChoiceButton]) {
-        firstButtonConfigure(with: buttons[0])
-        secondButtonConfigure(with: buttons[1])
+        configureButtons(with: viewModel)
+        addButtonsConstraints()
     }
     
-    private func firstButtonConfigure(with first: GameChoiceButton) {
+    private func configureButtons(with viewModel: GameChoiceButtonViewModel) {
+        firstButton.configure(with: viewModel)
+        secondButton.configure(with: GameChoiceButtonViewModel(tittle: "Countriesesese wowowowowo", emodji: "🦃"))
+        thirdButton.configure(with: viewModel)
+        fourthButton.configure(with: GameChoiceButtonViewModel(tittle: "Countriesesese wowowowowo", emodji: "🦃"))
+    }
+
+    private func addButtonsConstraints() {
+        firstButtonConstraintConfigure(with: firstButton)
+        secondButtonConstraintConfigure(with: secondButton)
+        thirdButtonConstraintConfigure(with: thirdButton)
+        fourthButtonConstraintConfigure(with: fourthButton)
+    }
+    
+    private func firstButtonConstraintConfigure(with first: GameChoiceButton) {
         view.addSubview(first)
         first.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -38,14 +48,36 @@ class MainViewController: UIViewController {
             first.heightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor, multiplier: 0.4)
         ])
     }
-    private func secondButtonConfigure(with second: GameChoiceButton) {
+    private func secondButtonConstraintConfigure(with second: GameChoiceButton) {
         view.addSubview(second)
         second.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            second.topAnchor.constraint(equalTo: view.topAnchor, constant: (view.frame.height/2)+10),
+            second.bottomAnchor.constraint(equalTo: view.topAnchor, constant: (view.frame.height/2)-10),
             second.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20),
             second.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor, multiplier: 0.4),
             second.heightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor, multiplier: 0.4)
+        ])
+    }
+    
+    private func thirdButtonConstraintConfigure(with third: GameChoiceButton) {
+        view.addSubview(third)
+        third.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            third.topAnchor.constraint(equalTo: view.topAnchor, constant: (view.frame.height/2)+10),
+            third.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
+            third.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor, multiplier: 0.4),
+            third.heightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor, multiplier: 0.4)
+        ])
+    }
+    
+    private func fourthButtonConstraintConfigure(with fourth: GameChoiceButton) {
+        view.addSubview(fourth)
+        fourth.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            fourth.topAnchor.constraint(equalTo: view.topAnchor, constant: (view.frame.height/2)+10),
+            fourth.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20),
+            fourth.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor, multiplier: 0.4),
+            fourth.heightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor, multiplier: 0.4)
         ])
     }
 }

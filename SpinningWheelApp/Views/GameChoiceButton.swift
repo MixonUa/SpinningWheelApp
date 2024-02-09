@@ -28,16 +28,23 @@ class GameChoiceButton: UIButton {
         return label
     }()
     
-    let viewModel: GameChoiceButtonViewModel
-    
-    init(with viewModel: GameChoiceButtonViewModel) {
-        self.viewModel = viewModel
+    override init(frame: CGRect) {
         super.init(frame: .zero)
         
         addSubview(gameEmodjiLabel)
         addSubview(gameTitleLabel)
         
-        configure(with: viewModel)
+        styleButton()
+        
+        backgroundColor = UIColor.yellow
+    }
+    
+    init() {
+        super.init(frame: .zero)
+        
+        addSubview(gameEmodjiLabel)
+        addSubview(gameTitleLabel)
+        
         styleButton()
         
         backgroundColor = UIColor.yellow
