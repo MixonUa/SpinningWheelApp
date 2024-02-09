@@ -14,7 +14,7 @@ class NetworkFetchService {
         self.networkDataProvider = networkDataProvider
     }
     
-    func requestAllNews(completion: @escaping (Result<[EmodjiDataModel], Error>) -> Void) {
+    func requestEmodjis(completion: @escaping (Result<[EmodjiDataModel], Error>) -> Void) {
         let newsURL = "https://raw.githubusercontent.com/MixonUa/JSON-Emodji/main/emoji.json"
         networkDataProvider.requestData(urlString: newsURL) { (data, error) in
             if let cathedError = error {

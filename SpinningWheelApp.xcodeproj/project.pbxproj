@@ -21,6 +21,7 @@
 		93EB275A2B76206200D50D75 /* NetworkFetchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93EB27592B76206200D50D75 /* NetworkFetchService.swift */; };
 		93EB275D2B76209E00D50D75 /* EmodjiDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93EB275C2B76209E00D50D75 /* EmodjiDataModel.swift */; };
 		93EB27602B76212E00D50D75 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93EB275F2B76212E00D50D75 /* NetworkError.swift */; };
+		93EB27632B762EAC00D50D75 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93EB27622B762EAC00D50D75 /* DataManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 		93EB27592B76206200D50D75 /* NetworkFetchService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkFetchService.swift; sourceTree = "<group>"; };
 		93EB275C2B76209E00D50D75 /* EmodjiDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmodjiDataModel.swift; sourceTree = "<group>"; };
 		93EB275F2B76212E00D50D75 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
+		93EB27622B762EAC00D50D75 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,6 +128,7 @@
 			children = (
 				93EB27562B76204B00D50D75 /* NetworkManager.swift */,
 				93EB27592B76206200D50D75 /* NetworkFetchService.swift */,
+				93EB27622B762EAC00D50D75 /* DataManager.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -218,6 +221,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				93121CEC2B73CDD1004761BE /* GameViewController.swift in Sources */,
+				93EB27632B762EAC00D50D75 /* DataManager.swift in Sources */,
 				93121CF02B73CE04004761BE /* LaunchViewController.swift in Sources */,
 				93EB275A2B76206200D50D75 /* NetworkFetchService.swift in Sources */,
 				93121CF42B73D30B004761BE /* GameChoiceButton.swift in Sources */,

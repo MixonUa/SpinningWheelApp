@@ -8,22 +8,30 @@
 import UIKit
 
 class MainViewController: UIViewController {
-    
+    let dataManager = DataManager()
     let viewModel = GameChoiceButtonViewModel(tittle: "Countriesesese", emodji: "😀")
 
     let firstButton = GameChoiceButton()
     let secondButton = GameChoiceButton()
     let thirdButton = GameChoiceButton()
     let fourthButton = GameChoiceButton()
-
+    
+    var emodjiData = [EmodjiDataModel]()
+    var error: String = ""
+    var titlesSet = Set<String>()
+    var sortedEmodjis: [String:[String]] = [:]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .blue
-        
+
+        titlesSet = dataManager.getSortedTitlesSet(from: emodjiData)
+        sortedEmodjis = dataManager.sortEmodji(from: emodjiData, by: titlesSet)
+        print(sortedEmodjis)
+        print(titlesSet)
         configureButtons(with: viewModel)
         addButtonsConstraints()
     }
-    
     
     @objc private func gameChoiceButtonPressed(sender: GameChoiceButton) {
         guard let gameSet = sender.gameTitleLabel.text else { return }
