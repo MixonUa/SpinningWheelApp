@@ -9,8 +9,8 @@ import UIKit
 
 class LaunchViewController: UIViewController {
     let fetchedDataProvider = NetworkFetchService()
-    var data = [EmodjiDataModel]()
-    var error: String = ""
+    private var data = [EmodjiDataModel]()
+    private var error: String = ""
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,6 +22,9 @@ class LaunchViewController: UIViewController {
             switch result {
             case .success(let recievedData): data = recievedData
             case .failure(let recievedError): error = recievedError.localizedDescription
+            }
+            if !error.isEmpty {
+                self.showAlert(title: "ERROR", message: error)
             }
             group.leave()
         }
@@ -35,7 +38,6 @@ class LaunchViewController: UIViewController {
     // MARK: - Navigation
     private func presentVC() {
         let nextVC = MainViewController()
-        nextVC.error = error
         nextVC.emodjiData = data
         nextVC.modalTransitionStyle = .crossDissolve
         nextVC.modalPresentationStyle = .fullScreen

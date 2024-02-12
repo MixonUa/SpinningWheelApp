@@ -17,7 +17,6 @@ class MainViewController: UIViewController {
     let fourthButton = GameChoiceButton()
     
     var emodjiData = [EmodjiDataModel]()
-    var error: String = ""
     var titlesSet = Set<String>()
     var sortedEmodjis: [String:[String]] = [:]
     

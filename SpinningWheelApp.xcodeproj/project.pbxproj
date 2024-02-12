@@ -17,6 +17,7 @@
 		93121CF02B73CE04004761BE /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93121CEF2B73CE04004761BE /* LaunchViewController.swift */; };
 		93121CF42B73D30B004761BE /* GameChoiceButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93121CF32B73D30B004761BE /* GameChoiceButton.swift */; };
 		93121CF72B73D64C004761BE /* GameChoiceButtonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93121CF62B73D64C004761BE /* GameChoiceButtonViewModel.swift */; };
+		934C040B2B7A25AA00362656 /* UIVievController+Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 934C040A2B7A25AA00362656 /* UIVievController+Alert.swift */; };
 		93EB27572B76204B00D50D75 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93EB27562B76204B00D50D75 /* NetworkManager.swift */; };
 		93EB275A2B76206200D50D75 /* NetworkFetchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93EB27592B76206200D50D75 /* NetworkFetchService.swift */; };
 		93EB275D2B76209E00D50D75 /* EmodjiDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93EB275C2B76209E00D50D75 /* EmodjiDataModel.swift */; };
@@ -37,6 +38,7 @@
 		93121CEF2B73CE04004761BE /* LaunchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
 		93121CF32B73D30B004761BE /* GameChoiceButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameChoiceButton.swift; sourceTree = "<group>"; };
 		93121CF62B73D64C004761BE /* GameChoiceButtonViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameChoiceButtonViewModel.swift; sourceTree = "<group>"; };
+		934C040A2B7A25AA00362656 /* UIVievController+Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIVievController+Alert.swift"; sourceTree = "<group>"; };
 		93EB27562B76204B00D50D75 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		93EB27592B76206200D50D75 /* NetworkFetchService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkFetchService.swift; sourceTree = "<group>"; };
 		93EB275C2B76209E00D50D75 /* EmodjiDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmodjiDataModel.swift; sourceTree = "<group>"; };
@@ -77,6 +79,7 @@
 				93121CE72B73C627004761BE /* Models */,
 				93121CE82B73C62C004761BE /* Views */,
 				93121CE62B73C61C004761BE /* Controllers */,
+				934C04092B7A258700362656 /* Extensions */,
 				93121CE42B73C572004761BE /* SupportingFiles */,
 			);
 			path = SpinningWheelApp;
@@ -121,6 +124,14 @@
 				93121CF32B73D30B004761BE /* GameChoiceButton.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		934C04092B7A258700362656 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				934C040A2B7A25AA00362656 /* UIVievController+Alert.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		93EB27532B76200B00D50D75 /* Services */ = {
@@ -227,6 +238,7 @@
 				93121CF42B73D30B004761BE /* GameChoiceButton.swift in Sources */,
 				93121CD42B73C550004761BE /* MainViewController.swift in Sources */,
 				93EB27572B76204B00D50D75 /* NetworkManager.swift in Sources */,
+				934C040B2B7A25AA00362656 /* UIVievController+Alert.swift in Sources */,
 				93121CD02B73C550004761BE /* AppDelegate.swift in Sources */,
 				93EB275D2B76209E00D50D75 /* EmodjiDataModel.swift in Sources */,
 				93121CF72B73D64C004761BE /* GameChoiceButtonViewModel.swift in Sources */,
