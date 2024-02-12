@@ -8,9 +8,11 @@
 import UIKit
 
 class GameViewController: UIViewController {
-    private let firstIcon = UILabel()
-    private let secondIcon = UILabel()
-    private let thirdIcon = UILabel()
+    let firstIcon = UILabel()
+    let secondIcon = UILabel()
+    let thirdIcon = UILabel()
+    let winLabel = UILabel()
+    let scoreLabel = UILabel()
     
     let spinnButton = UIButton()
     let goBackButton = UIButton()
@@ -27,22 +29,44 @@ class GameViewController: UIViewController {
     var gameSet = [String]()
     var iconsSet = Set<String>()
     var gameIcons = [String]()
+    var score = 500
+    var win = Int()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         choseGameIcons(from: gameSet)
-        setGameIcons()
-        setSpinnButton()
-        setGoBackButton()
+        setAllViews()
+        configureAllViews()
         
-        self.view.addSubview(stackView)
-        configureStackView()
-        self.view.addSubview(goBackButton)
-        configureGoBackButton()
-        self.view.addSubview(spinnButton)
-        configureSpinnButton()
-
         view.backgroundColor = UIColor.systemPink
+        winLabel.isHidden = true
+    }
+    
+    private func checkWining() {
+        if firstIcon.text == secondIcon.text && secondIcon.text == thirdIcon.text {
+            win = 300
+            score += win
+            updateScoreLabel()
+            updateWinLabel()
+        } else if firstIcon.text == secondIcon.text || secondIcon.text == thirdIcon.text {
+            win = 100
+            score += win
+            updateScoreLabel()
+            updateWinLabel()
+        }
+    }
+    
+    private func updateScoreLabel() {
+        scoreLabel.text = "💰\(score)"
+    }
+    
+    private func updateWinLabel() {
+        UILabel.animate(withDuration: 0.5) {
+            self.winLabel.transform = CGAffineTransform(scaleX: 2, y: 2)
+            self.winLabel.transform = CGAffineTransform(scaleX: 1, y: 1)
+        }
+        winLabel.text = "WIN \(win)"
+        winLabel.isHidden = false
     }
     
     private func choseGameIcons(from array: [String]) {
@@ -54,17 +78,13 @@ class GameViewController: UIViewController {
         }
     }
     
-    private func setGameIcons() {
-        let gameIconsArray = [firstIcon, secondIcon, thirdIcon]
-        for icon in gameIconsArray {
-            setIconLabel(emodji: icon)
-            icon.text = gameIcons[Int.random(in: 0..<3)]
-        }
-    }
-    
     //MARK: - Button action
     @objc private func gameChoiceButtonPressed(sender: UIButton) {
+        winLabel.isHidden = true
+        score -= 50
+        updateScoreLabel()
         setGameIcons()
+        checkWining()
     }
 
     // MARK: - Navigation
@@ -74,6 +94,24 @@ class GameViewController: UIViewController {
 
     
     //MARK: - ViewConfiguration
+    private func setAllViews() {
+        setGameIcons()
+        setSpinnButton()
+        setGoBackButton()
+        setScoreLabel()
+        setWinLabel()
+    }
+    
+    private func setGameIcons() {
+        let gameIconsArray = [firstIcon, secondIcon, thirdIcon]
+        for icon in gameIconsArray {
+            setIconLabel(emodji: icon)
+            icon.text = gameIcons[Int.random(in: 0..<3)]
+        }
+        UIView.transition(with: firstIcon, duration: 0.3, options: .transitionFlipFromTop, animations: nil, completion: nil)
+        UIView.transition(with: secondIcon, duration: 0.3, options: .transitionFlipFromTop, animations: nil, completion: nil)
+        UIView.transition(with: thirdIcon, duration: 0.3, options: .transitionFlipFromTop, animations: nil, completion: nil)
+    }
     
     private func setGoBackButton() {
         goBackButton.setImage(UIImage(named: "back"), for: .normal)
@@ -94,10 +132,61 @@ class GameViewController: UIViewController {
         emodji.numberOfLines = 1
         emodji.textAlignment = .center
         emodji.contentMode = .center
-        emodji.font = UIFont(name: "AppleColorEmoji", size:100)
+        emodji.font = UIFont(name: "AppleColorEmoji", size:90)
     }
     
-    private func configureGoBackButton(){
+    private func setScoreLabel() {
+        scoreLabel.text = "💰\(score)"
+        scoreLabel.numberOfLines = 1
+        scoreLabel.textAlignment = .center
+        scoreLabel.font = UIFont(name: "AppleSDGothicNeo", size:20)
+        scoreLabel.textColor = UIColor.yellow
+        scoreLabel.layer.cornerRadius = 10
+        scoreLabel.layer.borderWidth = 5
+        spinnButton.layer.borderColor = UIColor.black.cgColor
+    }
+    
+    private func setWinLabel() {
+        winLabel.numberOfLines = 1
+        winLabel.textAlignment = .center
+        winLabel.font = UIFont(name: "AppleSDGothicNeo-SemiBold", size:30)
+        winLabel.textColor = UIColor.black
+    }
+    
+    //MARK: - ViewConstraints
+    private func configureAllViews() {
+        self.view.addSubview(scoreLabel)
+        configureScoreLabel()
+        self.view.addSubview(goBackButton)
+        configureGoBackButton()
+        self.view.addSubview(stackView)
+        configureStackView()
+        self.view.addSubview(winLabel)
+        configureWinLabel()
+        self.view.addSubview(spinnButton)
+        configureSpinnButton()
+    }
+    private func configureScoreLabel() {
+        scoreLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            scoreLabel.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
+            scoreLabel.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -10),
+            scoreLabel.widthAnchor.constraint(equalToConstant: 100),
+            scoreLabel.heightAnchor.constraint(equalToConstant: 50)
+        ])
+    }
+    
+    private func configureWinLabel() {
+        winLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            winLabel.bottomAnchor.constraint(equalTo: stackView.topAnchor, constant: -30),
+            winLabel.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
+            winLabel.widthAnchor.constraint(equalToConstant: 200),
+            winLabel.heightAnchor.constraint(equalToConstant: 60)
+        ])
+    }
+    
+    private func configureGoBackButton() {
         goBackButton.addTarget(self, action: #selector(backToMainVC), for: .touchUpInside)
         goBackButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
