@@ -8,8 +8,8 @@
 import UIKit
 
 class GameViewController: UIViewController {
-    var gameSet: String = ""
-
+    var gameSet = [String]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.systemPink

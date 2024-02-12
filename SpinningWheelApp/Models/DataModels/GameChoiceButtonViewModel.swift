@@ -10,4 +10,5 @@ import Foundation
 struct GameChoiceButtonViewModel {
     let tittle: String
     let emodji: String
+    let emodjiSet: [String]
 }

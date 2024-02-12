@@ -8,6 +8,7 @@
 import UIKit
 
 class GameChoiceButton: UIButton {
+    public var gameSet = [String]()
     
     private let gameEmodjiLabel: UILabel = {
         let emodji = UILabel()
@@ -41,7 +42,6 @@ class GameChoiceButton: UIButton {
     
     init() {
         super.init(frame: .zero)
-        
         addSubview(gameEmodjiLabel)
         addSubview(gameTitleLabel)
         
@@ -57,6 +57,7 @@ class GameChoiceButton: UIButton {
     public func configure(with viewModel: GameChoiceButtonViewModel) {
         gameTitleLabel.text = viewModel.tittle
         gameEmodjiLabel.text = viewModel.emodji
+        gameSet = viewModel.emodjiSet
     }
     
     
