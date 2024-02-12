@@ -42,7 +42,7 @@ class MainViewController: UIViewController {
         self.present(nextVC, animated: true, completion: nil)
     }
     
-    // MARK: - Game Choice Buttons configaration
+    // MARK: - ViewConfiguration
     private func configureButtons(with viewModels: [GameChoiceButtonViewModel]) {
         firstButton.configure(with: viewModels[0])
         firstButton.addTarget(self, action: #selector(gameChoiceButtonPressed), for: .touchUpInside)
