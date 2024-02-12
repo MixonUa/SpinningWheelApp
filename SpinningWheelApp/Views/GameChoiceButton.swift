@@ -68,14 +68,14 @@ class GameChoiceButton: UIButton {
     
     public func shakeButton() {
         let shake = CABasicAnimation(keyPath: "position")
-        shake.duration = 0.1
+        shake.duration = 0.15
         shake.repeatCount = 2
         shake.autoreverses = true
         
-        let fromPoint = CGPoint(x: center.x - 8, y: center.y)
+        let fromPoint = CGPoint(x: center.x - 5, y: center.y)
         let fromValue = NSValue(cgPoint: fromPoint)
         
-        let toPoint = CGPoint(x: center.x + 8, y: center.y)
+        let toPoint = CGPoint(x: center.x + 5, y: center.y)
         let toValue = NSValue(cgPoint: toPoint)
         
         shake.fromValue = fromValue

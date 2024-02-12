@@ -37,7 +37,9 @@ class MainViewController: UIViewController {
         guard let gameSet = sender.gameTitleLabel.text else { return }
         print(gameSet)
         sender.shakeButton()
-        presentVC(with: gameSet)
+        DispatchQueue.main.asyncAfter(deadline: .now()+1) {
+            self.presentVC(with: gameSet)
+        }
     }
     
     // MARK: - Navigation
