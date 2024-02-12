@@ -9,39 +9,32 @@ import UIKit
 
 class MainViewController: UIViewController {
     let dataManager = DataManager()
-    let viewModel = GameChoiceButtonViewModel(tittle: "Countriesesese", emodji: "😀")
+    var emodjiData = [EmodjiDataModel]()
+    var viewModels = [GameChoiceButtonViewModel]()
 
     let firstButton = GameChoiceButton()
     let secondButton = GameChoiceButton()
     let thirdButton = GameChoiceButton()
     let fourthButton = GameChoiceButton()
     
-    var emodjiData = [EmodjiDataModel]()
-    var error: String = ""
-    var titlesSet = Set<String>()
-    var sortedEmodjis: [String:[String]] = [:]
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .blue
-
-        titlesSet = dataManager.getSortedTitlesSet(from: emodjiData)
-        sortedEmodjis = dataManager.sortEmodji(from: emodjiData, by: titlesSet)
-        print(sortedEmodjis)
-        print(titlesSet)
-        configureButtons(with: viewModel)
+        viewModels = dataManager.prepareViewModels(from: emodjiData)
+        configureButtons(with: viewModels)
         addButtonsConstraints()
     }
     
+    // MARK: - Button action
     @objc private func gameChoiceButtonPressed(sender: GameChoiceButton) {
-        guard let gameSet = sender.gameTitleLabel.text else { return }
-        print(gameSet)
         sender.shakeButton()
-        presentVC(with: gameSet)
+        DispatchQueue.main.asyncAfter(deadline: .now()+1) {
+            self.presentVC(with: sender.gameSet)
+        }
     }
     
     // MARK: - Navigation
-    private func presentVC(with gameSet: String) {
+    private func presentVC(with gameSet: [String]) {
         let nextVC = GameViewController()
         nextVC.gameSet = gameSet
         nextVC.modalTransitionStyle = .crossDissolve
@@ -49,15 +42,15 @@ class MainViewController: UIViewController {
         self.present(nextVC, animated: true, completion: nil)
     }
     
-    // MARK: - Game Choice Buttons configaration
-    private func configureButtons(with viewModel: GameChoiceButtonViewModel) {
-        firstButton.configure(with: viewModel)
+    // MARK: - ViewConfiguration
+    private func configureButtons(with viewModels: [GameChoiceButtonViewModel]) {
+        firstButton.configure(with: viewModels[0])
         firstButton.addTarget(self, action: #selector(gameChoiceButtonPressed), for: .touchUpInside)
-        secondButton.configure(with: GameChoiceButtonViewModel(tittle: "Countriesesese wowowowowo", emodji: "🦃"))
+        secondButton.configure(with: viewModels[1])
         secondButton.addTarget(self, action: #selector(gameChoiceButtonPressed), for: .touchUpInside)
-        thirdButton.configure(with: viewModel)
+        thirdButton.configure(with: viewModels[2])
         thirdButton.addTarget(self, action: #selector(gameChoiceButtonPressed), for: .touchUpInside)
-        fourthButton.configure(with: GameChoiceButtonViewModel(tittle: "Countriesesese wowowowowo", emodji: "🦃"))
+        fourthButton.configure(with: viewModels[3])
         fourthButton.addTarget(self, action: #selector(gameChoiceButtonPressed), for: .touchUpInside)
     }
 

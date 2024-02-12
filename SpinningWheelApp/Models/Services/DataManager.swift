@@ -9,32 +9,31 @@ import Foundation
 
 class DataManager {
     private let fetchedDataProvider: NetworkFetchService
-    public var emodjiData = [EmodjiDataModel]()
-    public var recievedError = String()
+    private var titlesSet = Set<String>()
+    private var sortedEmodjis: [String:[String]] = [:]
     
     init(fetchedDataProvider: NetworkFetchService = NetworkFetchService()) {
         self.fetchedDataProvider = fetchedDataProvider
     }
     
-    public func getData() {
-        fetchedDataProvider.requestEmodjis { [self] result in
-            switch result {
-            case .success(let data): emodjiData = data
-            case .failure(let error): recievedError = error.localizedDescription
-            }
+    public func prepareViewModels(from data: [EmodjiDataModel]) -> [GameChoiceButtonViewModel] {
+        var viewModels = [GameChoiceButtonViewModel]()
+        getSortedTitlesSet(from: data)
+        sortEmodji(from: data, by: titlesSet)
+        for title in titlesSet {
+            guard let emodjis = sortedEmodjis[title] else { break }
+            viewModels.append(GameChoiceButtonViewModel(tittle: title, emodji: (emodjis[0]), emodjiSet: emodjis))
         }
+        return viewModels
     }
     
-    public func getSortedTitlesSet(from data: [EmodjiDataModel]) -> Set<String> {
-        var titlesSet = Set<String>()
+    private func getSortedTitlesSet(from data: [EmodjiDataModel]) {
         data.forEach { (element) in
             titlesSet.insert(element.category)
         }
-        return titlesSet
     }
     
-    public func sortEmodji(from data: [EmodjiDataModel], by category: Set<String>) -> [String:[String]] {
-        var sortedEmodjis: [String:[String]] = [:]
+    private func sortEmodji(from data: [EmodjiDataModel], by category: Set<String>) {
         var arrayOfEmodjis = [String]()
         for title in category {
             data.forEach { (element) in
@@ -45,6 +44,5 @@ class DataManager {
             sortedEmodjis[title] = arrayOfEmodjis
             arrayOfEmodjis.removeAll()
         }
-        return sortedEmodjis
     }
 }

@@ -9,8 +9,7 @@ import UIKit
 
 class LaunchViewController: UIViewController {
     let fetchedDataProvider = NetworkFetchService()
-    var data = [EmodjiDataModel]()
-    var error: String = ""
+    private var data = [EmodjiDataModel]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,7 +20,7 @@ class LaunchViewController: UIViewController {
         fetchedDataProvider.requestEmodjis { [self] result in
             switch result {
             case .success(let recievedData): data = recievedData
-            case .failure(let recievedError): error = recievedError.localizedDescription
+            case .failure(let recievedError): self.showAlert(title: "ERROR", message: recievedError.localizedDescription)
             }
             group.leave()
         }
@@ -35,7 +34,6 @@ class LaunchViewController: UIViewController {
     // MARK: - Navigation
     private func presentVC() {
         let nextVC = MainViewController()
-        nextVC.error = error
         nextVC.emodjiData = data
         nextVC.modalTransitionStyle = .crossDissolve
         nextVC.modalPresentationStyle = .fullScreen
