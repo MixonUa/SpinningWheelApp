@@ -10,7 +10,6 @@ import UIKit
 class LaunchViewController: UIViewController {
     let fetchedDataProvider = NetworkFetchService()
     private var data = [EmodjiDataModel]()
-    private var error: String = ""
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,10 +20,7 @@ class LaunchViewController: UIViewController {
         fetchedDataProvider.requestEmodjis { [self] result in
             switch result {
             case .success(let recievedData): data = recievedData
-            case .failure(let recievedError): error = recievedError.localizedDescription
-            }
-            if !error.isEmpty {
-                self.showAlert(title: "ERROR", message: error)
+            case .failure(let recievedError): self.showAlert(title: "ERROR", message: recievedError.localizedDescription)
             }
             group.leave()
         }
