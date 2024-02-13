@@ -11,6 +11,7 @@ class LaunchViewController: UIViewController {
     let fetchedDataProvider = NetworkFetchService()
     private var data = [EmodjiDataModel]()
     let storage = UserDefaults.standard
+    var error: Error? = nil
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,13 +26,15 @@ class LaunchViewController: UIViewController {
         fetchedDataProvider.requestEmodjis { [weak self] result in
             switch result {
             case .success(let recievedData): self?.data = recievedData
-            case .failure(let recievedError): self?.showAlert(title: "ERROR", message: recievedError.localizedDescription)
+            case .failure(let recievedError): self?.error = recievedError; self?.showAlert(title: "ERROR", message: recievedError.localizedDescription)
             }
             group.leave()
         }
         
         group.notify(queue: DispatchQueue.main) {
+            if self.error == nil {
             self.presentVC()
+            }
         }
     }
     
