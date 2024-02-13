@@ -8,13 +8,8 @@
 import Foundation
 
 class DataManager {
-    private let fetchedDataProvider: NetworkFetchService
     private var titlesSet = Set<String>()
     private var sortedEmodjis: [String:[String]] = [:]
-    
-    init(fetchedDataProvider: NetworkFetchService = NetworkFetchService()) {
-        self.fetchedDataProvider = fetchedDataProvider
-    }
     
     public func prepareViewModels(from data: [EmodjiDataModel]) -> [GameChoiceButtonViewModel] {
         var viewModels = [GameChoiceButtonViewModel]()

@@ -11,11 +11,13 @@ class MainViewController: UIViewController {
     let dataManager = DataManager()
     var emodjiData = [EmodjiDataModel]()
     var viewModels = [GameChoiceButtonViewModel]()
+    let storage = UserDefaults.standard
 
     let firstButton = GameChoiceButton()
     let secondButton = GameChoiceButton()
     let thirdButton = GameChoiceButton()
     let fourthButton = GameChoiceButton()
+    let scoreLabel = UILabel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,6 +25,12 @@ class MainViewController: UIViewController {
         viewModels = dataManager.prepareViewModels(from: emodjiData)
         configureButtons(with: viewModels)
         addButtonsConstraints()
+        setScoreLabel()
+        configureScoreLabel()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        scoreLabel.text = "💰\(storage.integer(forKey: "score"))"
     }
     
     // MARK: - Button action
@@ -43,6 +51,28 @@ class MainViewController: UIViewController {
     }
     
     // MARK: - ViewConfiguration
+    private func setScoreLabel() {
+        scoreLabel.text = "💰\(storage.integer(forKey: "score"))"
+        scoreLabel.numberOfLines = 1
+        scoreLabel.textAlignment = .center
+        scoreLabel.font = UIFont(name: "AppleSDGothicNeo", size:20)
+        scoreLabel.textColor = UIColor.yellow
+        scoreLabel.layer.cornerRadius = 10
+        scoreLabel.layer.borderWidth = 5
+        scoreLabel.layer.borderColor = UIColor.black.cgColor
+    }
+    
+    private func configureScoreLabel() {
+        view.addSubview(scoreLabel)
+        scoreLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            scoreLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            scoreLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            scoreLabel.widthAnchor.constraint(equalToConstant: 150),
+            scoreLabel.heightAnchor.constraint(equalToConstant: 50)
+        ])
+    }
+    
     private func configureButtons(with viewModels: [GameChoiceButtonViewModel]) {
         firstButton.configure(with: viewModels[0])
         firstButton.addTarget(self, action: #selector(gameChoiceButtonPressed), for: .touchUpInside)
