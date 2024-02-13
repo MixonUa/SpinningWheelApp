@@ -11,7 +11,7 @@ class MainViewController: UIViewController {
     let dataManager = DataManager()
     var emodjiData = [EmodjiDataModel]()
     var viewModels = [GameChoiceButtonViewModel]()
-    var score = Int()
+    let storage = UserDefaults.standard
 
     let firstButton = GameChoiceButton()
     let secondButton = GameChoiceButton()
@@ -27,6 +27,10 @@ class MainViewController: UIViewController {
         addButtonsConstraints()
         setScoreLabel()
         configureScoreLabel()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        scoreLabel.text = "💰\(storage.integer(forKey: "score"))"
     }
     
     // MARK: - Button action
@@ -48,7 +52,7 @@ class MainViewController: UIViewController {
     
     // MARK: - ViewConfiguration
     private func setScoreLabel() {
-        scoreLabel.text = "💰\(score)"
+        scoreLabel.text = "💰\(storage.integer(forKey: "score"))"
         scoreLabel.numberOfLines = 1
         scoreLabel.textAlignment = .center
         scoreLabel.font = UIFont(name: "AppleSDGothicNeo", size:20)

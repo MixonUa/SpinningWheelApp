@@ -10,10 +10,15 @@ import UIKit
 class LaunchViewController: UIViewController {
     let fetchedDataProvider = NetworkFetchService()
     private var data = [EmodjiDataModel]()
+    let storage = UserDefaults.standard
 
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .black
+        if storage.integer(forKey: "score") == 0 {
+        storage.setValue(500, forKey: "score")
+            print("SET SCORE 500")
+        }
         
         let group = DispatchGroup()
         group.enter()

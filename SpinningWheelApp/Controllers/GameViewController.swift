@@ -29,7 +29,7 @@ class GameViewController: UIViewController {
     var gameSet = [String]()
     var iconsSet = Set<String>()
     var gameIcons = [String]()
-    var score = 500
+    let storage = UserDefaults.standard
     var win = Int()
     
     override func viewDidLoad() {
@@ -45,19 +45,23 @@ class GameViewController: UIViewController {
     private func checkWining() {
         if firstIcon.text == secondIcon.text && secondIcon.text == thirdIcon.text {
             win = 300
-            score += win
+            let oldScore = storage.integer(forKey: "score")
+            let newScore = oldScore + win
+            storage.setValue((newScore), forKey: "score")
             updateScoreLabel()
             updateWinLabel()
         } else if firstIcon.text == secondIcon.text || secondIcon.text == thirdIcon.text {
             win = 100
-            score += win
+            let oldScore = storage.integer(forKey: "score")
+            let newScore = oldScore + win
+            storage.setValue((newScore), forKey: "score")
             updateScoreLabel()
             updateWinLabel()
         }
     }
     
     private func updateScoreLabel() {
-        scoreLabel.text = "💰\(score)"
+        scoreLabel.text = "💰\(storage.integer(forKey: "score"))"
     }
     
     private func updateWinLabel() {
@@ -81,7 +85,10 @@ class GameViewController: UIViewController {
     //MARK: - Button action
     @objc private func gameChoiceButtonPressed(sender: UIButton) {
         winLabel.isHidden = true
-        score -= 50
+        let cost = 50
+        let oldScore = storage.integer(forKey: "score")
+        let newScore = oldScore - cost
+        storage.setValue((newScore), forKey: "score")
         updateScoreLabel()
         setGameIcons()
         checkWining()
@@ -136,7 +143,7 @@ class GameViewController: UIViewController {
     }
     
     private func setScoreLabel() {
-        scoreLabel.text = "💰\(score)"
+        scoreLabel.text = "💰\(storage.integer(forKey: "score"))"
         scoreLabel.numberOfLines = 1
         scoreLabel.textAlignment = .center
         scoreLabel.font = UIFont(name: "AppleSDGothicNeo", size:20)
