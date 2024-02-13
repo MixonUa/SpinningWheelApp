@@ -22,10 +22,10 @@ class LaunchViewController: UIViewController {
         
         let group = DispatchGroup()
         group.enter()
-        fetchedDataProvider.requestEmodjis { [self] result in
+        fetchedDataProvider.requestEmodjis { [weak self] result in
             switch result {
-            case .success(let recievedData): data = recievedData
-            case .failure(let recievedError): showAlert(title: "ERROR", message: recievedError.localizedDescription)
+            case .success(let recievedData): self?.data = recievedData
+            case .failure(let recievedError): self?.showAlert(title: "ERROR", message: recievedError.localizedDescription)
             }
             group.leave()
         }
