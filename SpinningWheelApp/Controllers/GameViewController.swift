@@ -143,7 +143,7 @@ class GameViewController: UIViewController {
         scoreLabel.textColor = UIColor.yellow
         scoreLabel.layer.cornerRadius = 10
         scoreLabel.layer.borderWidth = 5
-        spinnButton.layer.borderColor = UIColor.black.cgColor
+        scoreLabel.layer.borderColor = UIColor.black.cgColor
     }
     
     private func setWinLabel() {

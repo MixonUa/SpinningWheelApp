@@ -20,7 +20,7 @@ class LaunchViewController: UIViewController {
         fetchedDataProvider.requestEmodjis { [self] result in
             switch result {
             case .success(let recievedData): data = recievedData
-            case .failure(let recievedError): self.showAlert(title: "ERROR", message: recievedError.localizedDescription)
+            case .failure(let recievedError): showAlert(title: "ERROR", message: recievedError.localizedDescription)
             }
             group.leave()
         }
